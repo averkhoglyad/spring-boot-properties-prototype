@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active:
+#      - git
+      - native
+  cloud:
+    config:
+      server:
+#        git:
+#          uri: https://github.com/.../.git
+#          default-label: master
+#          search-paths: configs
+#          force-pull: true
+#          order: 1
+        native:
+          search-locations: file:configs-repo/
+          order: 2
+    refresh:
+      enabled: true
+
+server:
+  port: 9000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
